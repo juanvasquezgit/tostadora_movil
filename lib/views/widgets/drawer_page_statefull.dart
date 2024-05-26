@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class DrawerPageStateFull extends StatefulWidget {
   const DrawerPageStateFull({Key? key}) : super(key: key);
@@ -8,7 +14,7 @@ class DrawerPageStateFull extends StatefulWidget {
 }
 
 class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
-  static const String _appTitle = 'INICIO';
+  static const String _appTitle = 'Inicio';
   static const String _drawerHeaderTitle = 'BIENVENIDOS';
   static const String _drawerHeaderSubtitle = 'Tostadora digital';
   static const String _tostionTypeTitle = 'Tipo de Tostión';
@@ -16,15 +22,36 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
   static const String _tostionTypeMedium = 'Medio';
   static const String _tostionTypeLow = 'Bajo';
   static const String _graphTitle = 'Gráfica';
+  static const String _forgotPasswordTitle = '¿Olvidó su contraseña?';
+
+  final List<String> _imageUrls = [
+    'https://img.freepik.com/premium-vector/digital-coffee-logo-template-design_316488-1278.jpg',
+    'https://perfectdailygrind.com/wp-content/uploads/2020/11/Genio-Roasters-4.jpg',
+  ];
+
+  final List<String> _descriptions = [
+    'Banner',
+    'Tostadora de café',
+  ];
 
   String _selectedTostionType = _tostionTypeHigh;
   bool _showTostionButtons = false;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_appTitle),
+        title: Text(
+          _appTitle,
+          style: TextStyle(
+            fontFamily: 'Pacifico',
+            color: Colors.blue,
+            fontSize: 28.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
       ),
       drawer: Drawer(
         child: ListView(
@@ -56,25 +83,76 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
               },
             ),
             const Divider(),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Logout'),
-                  onTap: () {
-                    // Acción al hacer clic en "Logout"
-                    Navigator.pop(context); // Cerrar el Drawer
-                    // Realizar la acción de logout y navegar a la ruta '/'
-                  },
-                ),
-              ),
+            ListTile(
+              leading: const Icon(Icons.help),
+              title: Text(_forgotPasswordTitle),
+              onTap: () {
+                // Acción al hacer clic en "¿Olvidó su contraseña?"
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
+                // Acción al hacer clic en "Logout"
+                context.go('/');
+              },
             ),
           ],
         ),
       ),
-      body: Center(
-        child: Text('Tipo de Tostión - $_selectedTostionType'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 20.0),
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 400.0,
+              enlargeCenterPage: true,
+              autoPlay: true, // Habilitar el desplazamiento automático
+              aspectRatio: 16 / 9,
+              enableInfiniteScroll: true,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              viewportFraction: 0.8,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+            ),
+            items: _imageUrls.map((imageUrl) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            image: DecorationImage(
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(
+                        _descriptions[_currentIndex],
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ],
       ),
     );
   }
