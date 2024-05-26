@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "451070999128",
+    "firebase_url": "https://proyecto-de6af-default-rtdb.firebaseio.com",
+    "project_id": "proyecto-de6af",
+    "storage_bucket": "proyecto-de6af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451070999128:android:6cded6b6287070afd7e82d",
+        "android_client_info": {
+          "package_name": "co.edu.uceva.digital_coffee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX-AL79Vv78oFo7nTnCxKE2Q2HxdMPZu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
