@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -64,12 +64,12 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 50.0),
+            const SizedBox(height: 50.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: FadeInUp(
-                duration: Duration(milliseconds: 1000),
-                child: Text(
+                duration: const Duration(milliseconds: 1000),
+                child: const Text(
                   'Login',
                   style: TextStyle(
                     color: Colors.white,
@@ -79,12 +79,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: FadeInUp(
-                duration: Duration(milliseconds: 1300),
-                child: Text(
+                duration: const Duration(milliseconds: 1300),
+                child: const Text(
                   'Bienvenidos a Digital Coffee',
                   style: TextStyle(
                     color: Colors.white,
@@ -94,14 +94,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Expanded(
               child: FadeInUp(
-                duration: Duration(milliseconds: 1600),
+                duration: const Duration(milliseconds: 1600),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(50.0),
                       topRight: Radius.circular(50.0),
                     ),
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 60.0),
+                        const SizedBox(height: 60.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: TextField(
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 30.0),
+                        const SizedBox(height: 30.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: TextField(
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                             obscureText: true,
                           ),
                         ),
-                        SizedBox(height: 10.0),
+                        const SizedBox(height: 10.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Center(
@@ -154,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                               onTap: () {
                                 // Acción al hacer clic en "¿Olvidó su contraseña?"
                               },
-                              child: Text(
+                              child: const Text(
                                 '¿Olvidó su contraseña?',
                                 style: TextStyle(
                                   color: Color(0xFF2196F3),
@@ -165,21 +165,21 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         if (_message.isNotEmpty)
                           Center(
                             child: Text(
                               _message,
-                              style: TextStyle(color: Colors.red),
+                              style: const TextStyle(color: Colors.red),
                             ),
                           ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Center(
                           child: Column(
                             children: [
                               ElevatedButton(
                                 onPressed: login,
-                                child: Text(
+                                child: const Text(
                                   'Login',
                                   style: TextStyle(color: Colors.white),
                                 ),
@@ -187,8 +187,8 @@ class _LoginPageState extends State<LoginPage> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                   ),
-                                  padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 16.0),
-                                  backgroundColor: Color(0xFFFF9800),
+                                  padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 16.0),
+                                  backgroundColor: const Color(0xFFFF9800),
                                   elevation: 0,
                                   shadowColor: Colors.transparent,
                                 ),
@@ -196,13 +196,13 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 40.0),
+                        const SizedBox(height: 40.0),
                         Center(
                           child: GestureDetector(
                             onTap: () {
                               // Acción al hacer clic en "Iniciar sesión con Google"
                             },
-                            child: Row(
+                            child: const Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Icon(FontAwesomeIcons.google),
@@ -215,12 +215,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 '¿No tienes una cuenta? ',
                                 style: TextStyle(
                                   color: Colors.grey,
@@ -229,7 +229,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               GestureDetector(
                                 onTap: () => context.push('/register'),
-                                child: Text(
+                                child: const Text(
                                   'Regístrate',
                                   style: TextStyle(
                                     color: Color(0xFF2196F3),

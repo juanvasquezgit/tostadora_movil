@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:animate_do/animate_do.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class DrawerPageStateFull extends StatefulWidget {
@@ -27,22 +23,23 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
   final List<String> _imageUrls = [
     'https://img.freepik.com/premium-vector/digital-coffee-logo-template-design_316488-1278.jpg',
     'https://perfectdailygrind.com/wp-content/uploads/2020/11/Genio-Roasters-4.jpg',
+    
   ];
 
   final List<String> _descriptions = [
     'Banner',
     'Tostadora de café',
+   
   ];
 
   String _selectedTostionType = _tostionTypeHigh;
   bool _showTostionButtons = false;
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           _appTitle,
           style: TextStyle(
             fontFamily: 'Pacifico',
@@ -60,7 +57,7 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
             _buildDrawerHeader(),
             ListTile(
               leading: const Icon(Icons.wifi),
-              title: Text(_tostionTypeTitle),
+              title: const Text(_tostionTypeTitle),
               onTap: () {
                 setState(() {
                   _showTostionButtons = !_showTostionButtons;
@@ -77,7 +74,7 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
               ),
             ListTile(
               leading: const Icon(Icons.show_chart),
-              title: Text(_graphTitle),
+              title: const Text(_graphTitle),
               onTap: () {
                 // Acción al hacer clic en "Gráfica"
               },
@@ -85,7 +82,7 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
             const Divider(),
             ListTile(
               leading: const Icon(Icons.help),
-              title: Text(_forgotPasswordTitle),
+              title: const Text(_forgotPasswordTitle),
               onTap: () {
                 // Acción al hacer clic en "¿Olvidó su contraseña?"
               },
@@ -104,53 +101,49 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20.0),
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 400.0,
-              enlargeCenterPage: true,
-              autoPlay: true, // Habilitar el desplazamiento automático
-              aspectRatio: 16 / 9,
-              enableInfiniteScroll: true,
-              autoPlayCurve: Curves.fastOutSlowIn,
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              viewportFraction: 0.8,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-            ),
-            items: _imageUrls.map((imageUrl) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Column(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(
-                              image: NetworkImage(imageUrl),
-                              fit: BoxFit.cover,
+          Expanded(
+            child: CarouselSlider(
+              options: CarouselOptions(
+                height: 400.0,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                aspectRatio: 16 / 9,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                viewportFraction: 0.8,
+              ),
+              items: _imageUrls.map((imageUrl) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              image: DecorationImage(
+                                image: NetworkImage(imageUrl),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10.0),
-                      Text(
-                        _descriptions[_currentIndex],
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(height: 10.0),
+                        Text(
+                          _descriptions[_imageUrls.indexOf(imageUrl)],
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-              );
-            }).toList(),
+                      ],
+                    );
+                  },
+                );
+              }).toList(),
+            ),
           ),
         ],
       ),
@@ -158,26 +151,26 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
   }
 
   Widget _buildDrawerHeader() {
-    return DrawerHeader(
+    return const DrawerHeader(
       decoration: BoxDecoration(
         color: Color(0xFF0066CC),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40.0),
+          SizedBox(height: 40.0),
           Text(
             _drawerHeaderTitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 8.0),
+          SizedBox(height: 8.0),
           Text(
             _drawerHeaderSubtitle,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16.0,
               color: Colors.white,
             ),
