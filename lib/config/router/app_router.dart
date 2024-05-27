@@ -1,3 +1,4 @@
+import 'package:digital_coffee/views/auth/graph_page.dart';
 import 'package:digital_coffee/views/auth/login_page.dart';
 import 'package:digital_coffee/views/auth/register_page.dart';
 import 'package:flutter/material.dart';
@@ -21,5 +22,9 @@ final appRouter = GoRouter(
       path: '/home',
       builder: (BuildContext context, GoRouterState state) => const DrawerPageStateFull(),
     ),
+    GoRoute(
+      path: '/graph',
+      builder: (context, state) => const GraphPage(),  
+    )
   ],
 );

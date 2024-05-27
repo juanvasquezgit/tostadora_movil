@@ -74,8 +74,9 @@ class _DrawerPageStateFullState extends State<DrawerPageStateFull> {
               ),
             ListTile(
               leading: const Icon(Icons.show_chart),
-              title: const Text(_graphTitle),
+              title: const Text('Grafica'),
               onTap: () {
+                context.go('/graph');
                 // Acción al hacer clic en "Gráfica"
               },
             ),
