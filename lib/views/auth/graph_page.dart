@@ -67,13 +67,13 @@ class _GraphPageState extends State<GraphPage> {
     Widget text;
     switch (value.toInt()) {
       case 2:
-        text = const Text('MAR', style: style);
+        text = const Text('34.5', style: style);
         break;
       case 5:
-        text = const Text('JUN', style: style);
+        text = const Text('35.5', style: style);
         break;
       case 8:
-        text = const Text('SEP', style: style);
+        text = const Text('35.25', style: style);
         break;
       default:
         text = const Text('', style: style);
@@ -94,13 +94,10 @@ class _GraphPageState extends State<GraphPage> {
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '10K';
+        text = '983865';
         break;
       case 3:
-        text = '30k';
-        break;
-      case 5:
-        text = '50k';
+        text = '977205';
         break;
       default:
         return Container();
